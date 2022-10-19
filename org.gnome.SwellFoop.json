@@ -1,0 +1,100 @@
+{
+    "app-id" : "org.gnome.SwellFoop",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "master",
+    "sdk" : "org.gnome.Sdk",
+    "command" : "swell-foop",
+    "tags" : [
+        "nightly"
+    ],
+    "desktop-file-name-prefix" : "(Nightly) ",
+    "finish-args" : [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland",
+        "--device=dri",
+        "--filesystem=xdg-run/dconf",
+        "--filesystem=~/.config/dconf:ro",
+        "--talk-name=ca.desrt.dconf",
+        "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
+    ],
+    "modules" : [
+        {
+            "name": "cogl",
+            "config-opts": [
+                "--disable-cogl-gst",
+                "--enable-xlib-egl-platform",
+                "--enable-wayland-egl-platform"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/cogl.git",
+                    "branch": "cogl-1.22"
+                }
+            ]
+        },
+        {
+            "name": "clutter",
+            "config-opts": [
+                "--enable-egl-backend",
+                "--enable-wayland-backend"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/clutter.git"
+                }
+            ]
+        },
+        {
+            "name": "clutter-gtk",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/clutter-gtk.git"
+                }
+            ]
+        },
+        {
+            "name": "clutter-gst",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/clutter-gst.git",
+                    "branch": "clutter-gst-3.0"
+                }
+            ]
+        },
+        {
+            "name": "libgee",
+            "config-opts": ["--enable-introspection=no"],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/libgee.git"
+                }
+            ]
+        },
+        {
+            "name": "libgnome-games-support",
+            "buildsystem": "meson",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/libgnome-games-support.git"
+                }
+            ]
+        },
+        {
+            "name" : "swell-foop",
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/swell-foop.git"
+                }
+            ]
+        }
+    ]
+}
